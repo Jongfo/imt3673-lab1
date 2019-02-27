@@ -1,26 +1,54 @@
 package com.example.mockbankapp1;
 
-import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+
+import java.util.ArrayList;
 
 public class TransactionsActivity extends AppCompatActivity {
+
+    private RecyclerView mResView;
+    private MyAdapter mAdapter;
+    //private RecyclerView.LayoutManager layoutManager;
+    private  ArrayList<String> mTextSet;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_transactions);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
-        /*FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+        mResView = findViewById(R.id.transa_res_view);
+
+        final RecyclerView.LayoutManager layoutManager = new GridLayoutManager(this, 3);
+
+        mResView.setLayoutManager(layoutManager);
+
+        mTextSet = new ArrayList<>();
+        mTextSet.add("Hello");
+        mTextSet.add("World");
+
+        mAdapter = new MyAdapter(mTextSet.toArray(new String[mTextSet.size()]));
+        mResView.setAdapter(mAdapter);
+
+        final Button btn = findViewById(R.id.transa_btn);
+        btn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });*/
-    }
+            public void onClick(View v) {
+                final EditText txt = findViewById(R.id.transa_edit_txtinput);
 
+                mTextSet.add(txt.getText().toString());
+                mAdapter.ReplaceData(mTextSet.toArray(new String[mTextSet.size()]));
+
+                // Either one or the other
+                // mResView.setAdapter(mAdapter);
+                mResView.swapAdapter(mAdapter, true); // Better
+            }
+        });
+    }
 }
