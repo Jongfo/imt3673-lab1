@@ -1,4 +1,13 @@
 <resources>
     <string name="app_name">MockBankApp1</string>
     <string name="title_activity_two">ActivityTwo</string>
+    <string-array name="Friends">
+        <item></item>
+        <item>Alice</item>
+        <item>Bob</item>
+        <item>Charlie</item>
+        <item>Dawn</item>
+        <item>Elvis</item>
+        <item>Frode</item>
+    </string-array>
 </resources>

@@ -25,13 +25,15 @@ public class TransactionsActivity extends AppCompatActivity {
 
         mResView = findViewById(R.id.transa_res_view);
 
-        final RecyclerView.LayoutManager layoutManager = new GridLayoutManager(this, 3);
+        final RecyclerView.LayoutManager layoutManager = new GridLayoutManager(this, 1);
 
         mResView.setLayoutManager(layoutManager);
 
+        Bundle myText = getIntent().getExtras();
+
         mTextSet = new ArrayList<>();
-        mTextSet.add("Hello");
-        mTextSet.add("World");
+
+        mTextSet.add(myText.getString("transHistory")); // Adds premade history
 
         mAdapter = new MyAdapter(mTextSet.toArray(new String[mTextSet.size()]));
         mResView.setAdapter(mAdapter);

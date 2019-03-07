@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //make varables for ellements of interest
+        //Initialize objects for this activity
         final Button ButtTransfer = findViewById(R.id.btn_transfer);
         final Button ButtTransaction = findViewById(R.id.btn_transactions);
         final TextView BallField = findViewById(R.id.lbl_balance);
@@ -26,12 +26,15 @@ public class MainActivity extends AppCompatActivity {
         final int startingBalance = new Random().nextInt(21) + 90; // [0, 20] + 90 => [90, 110]
         BallField.setText(Integer.toString(startingBalance));
 
+        final Intent myBundle = new Intent();
+        myBundle.putExtra("transHistory", "15:30:21    |   Angel    |   95.43   |  95.43");
+
         ButtTransaction.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
             // Make Activity active
-
                 Intent i = new Intent(MainActivity.this, TransactionsActivity.class);
+                i.putExtras(myBundle);
                 startActivity(i);
             }
         });
